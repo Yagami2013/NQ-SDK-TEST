@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SDKtab</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="encryptTXT">加密txt文件</string>
+    <string name="encryptJPG">加密jpg文件</string>
+    <string name="encryptRAR">加密rar压缩文件</string>
+    <string name="encryptInternalTXT">加密内部存储文件</string>
+    <string name="decryptTXT">解密txt文件</string>
+    <string name="decryptJPG">解密 jpg文件</string>
+    <string name="decryptRAR">解密rar文件</string>
+    <string name="decryptInternalTXT">解密内部存储文件</string>
+    <string name="encryptString">字符串加密</string>
+    <string name="decryptString">字符串解密</string>
+    <string name="hintText">请输入待加密文字</string>
+    <string name="encryptByte">字节加密</string>
+    <string name="decryptByte">字节解密</string>
+    <string name="appcfgbutton">获取应用配置</string>
+    <string name="ssocfgbutton">获取单点登陆配置</string>
+    <string name="str_encryption_ch">加密</string>
+    <string name="str_decryption_ch">解密</string>
+    <string name="str_app_ch">应用</string>
+    <string name="str_devInfo_ch">设备信息</string>  
+    <string name="str_config_ch">配置</string>  
+    <string name="str_sso_ch">单点登录</string>
+    <!-- error info for each error code -->
+    <string name="error_1004">NQ服务不可用</string>
+    <string name="error_1005">参数传入有误</string>
+    <string name="error_1006">应用配置为空</string>
+    <string name="error_1007">加密功能未启用</string>
+    <string name="error_1008">应用配置未启用</string>
+    <string name="error_1009">其他错误</string>
+    <string name="error_1010">sso功能未启用</string>
+    <string name="error_1011">未声明Permission权限</string>
+    <string name="error_1012">未安装安全容器</string>
+    <string name="error_1013">未初始化安全容器</string>
+    <string name="error_1014">MDM未激活</string>
+
+</resources>
