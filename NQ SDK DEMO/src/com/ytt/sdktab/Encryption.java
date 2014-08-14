@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.nq.enterprise.sdk.AppBridge;
 import com.nq.enterprise.sdk.NqSecurityService;
@@ -19,6 +21,17 @@ public class Encryption extends Activity {
 	private String tagString = "Encryption";
 	private SecurityServer mSecurityServer = null;
 	private boolean enabled=false;
+	
+	private EditText input;
+	private String str_input;
+	private byte[] bytes_input;
+	private String text=null;//encrypted string
+	private byte[] bytes=null;//encrypted bytes
+	private TextView string_encrypted;
+	private TextView string_decrypted;
+	private TextView byte_encrypted;
+	private TextView byte_decrypted;
+	
 
 	/**
 	 * 初始化AppBridge
@@ -68,7 +81,23 @@ public class Encryption extends Activity {
 		Button dec_txt=(Button)findViewById(R.id.btn_dec_txt);
 		Button dec_jpg=(Button)findViewById(R.id.btn_dec_jpg);
 		Button dec_rar=(Button)findViewById(R.id.btn_dec_rar);
+		enc_string.setEnabled(enabled);
+		enc_byte.setEnabled(enabled);
 		enc_txt.setEnabled(enabled);
+		enc_jpg.setEnabled(enabled);
+		enc_rar.setEnabled(enabled);
+		dec_string.setEnabled(enabled);
+		dec_byte.setEnabled(enabled);
+		dec_txt.setEnabled(enabled);
+		dec_jpg.setEnabled(enabled);
+		dec_rar.setEnabled(enabled);
+		input=(EditText)findViewById(R.id.inputText);
+		str_input=input.getText().toString();
+		bytes_input=str_input.getBytes();
+		string_encrypted=(TextView)findViewById(R.id.encryptString);
+		string_decrypted=(TextView)findViewById(R.id.decryptString);
+		byte_encrypted=(TextView)findViewById(R.id.encryptByte);
+		byte_decrypted=(TextView)findViewById(R.id.decryptByte);
 		
 		OnClickListener listener=new View.OnClickListener() {
 			
@@ -83,31 +112,50 @@ public class Encryption extends Activity {
 				Button button=(Button)view;
 				
 				switch (button.getId()) {
-				case R.id.btn_enc_string:					
+				case R.id.btn_enc_string:
+					text = mSecurityServer.encryptString(str_input);
+					string_encrypted.setText(text);
 					break;
-				case R.id.btn_enc_byte:					
+				case R.id.btn_enc_byte:
+					bytes=mSecurityServer.encryptBytes(bytes_input);
+					byte_encrypted.setText(bytes.toString());
 					break;
 				case R.id.btn_enc_txt:
-					Log.d(tagString, path_src+"test.txt");
-					Log.d(tagString, path_enc+"test.txt");
 					mSecurityServer.encryptFile(path_src+"test.txt", path_enc+"test.txt");
 					break;
 				case R.id.btn_enc_jpg:
+					mSecurityServer.encryptFile(path_src+"test.jpg", path_enc+"test.jpg");
 					break;
 				case R.id.btn_enc_rar:
+					mSecurityServer.encryptFile(path_src+"test.rar", path_enc+"test.rar");
 					break;
 				case R.id.btn_dec_txt:
 					mSecurityServer.decryptFile(path_enc+"test.txt", path_dec+"test.txt");
 					break;
 				case R.id.btn_dec_jpg:
+					mSecurityServer.decryptFile(path_enc+"test.jpg", path_dec+"test.jpg");
 					break;
 				case R.id.btn_dec_rar:
+					mSecurityServer.decryptFile(path_enc+"test.rar", path_dec+"test.rar");
 					break;
 				case R.id.btn_dec_string:
+					if (text!=null) {
+						String string=mSecurityServer.decryptString(text);
+						string_decrypted.setText(string);
+					} else {
+						ErrorInfo.hint(Encryption.this, "encrypted string is null,please click encryption first!");
+					}
 					break;
 				case R.id.btn_dec_byte:
+					if (bytes!=null) {
+						byte[] dec_byte=mSecurityServer.decryptBytes(bytes);
+						byte_decrypted.setText(dec_byte.toString());
+					} else {
+						ErrorInfo.hint(Encryption.this, "encrypted bytes is null,please click encryption first!");
+					}
 					break;
 				default:
+					ErrorInfo.hint(Encryption.this, "Button id error!");
 					break;
 				}
 				
