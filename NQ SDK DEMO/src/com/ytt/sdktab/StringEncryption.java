@@ -30,7 +30,7 @@ public class StringEncryption extends Activity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.security_string);
+		setContentView(R.layout.security);
 
 		toBeEncrypt = (EditText) findViewById(R.id.inputText);
 		stringEncButton = (Button) findViewById(R.id.encryptStringButton);

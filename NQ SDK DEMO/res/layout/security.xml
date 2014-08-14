@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <EditText android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hintText"
+            android:id="@+id/inputText"  />
+    <!-- 字符串 加密-->
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+        <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/encryptString"
+            android:id="@+id/btn_enc_string"  />
+        <TextView android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/btn_enc_string"
+            android:id="@+id/encryptString" />        
+    </RelativeLayout>
+    <!-- 字节加密 -->
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+        <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/encryptByte"
+            android:id="@+id/btn_enc_byte"  />
+        <TextView android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/btn_enc_byte"
+            android:id="@+id/encryptByte" />        
+    </RelativeLayout>
+    <!-- 字符串解密 -->
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+        <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/decryptString"
+            android:id="@+id/btn_dec_string"  />
+        <TextView android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/btn_dec_string"
+            android:id="@+id/decryptString" />        
+    </RelativeLayout>
+    <!-- 字节解密 -->
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+        <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/decryptByte"
+            android:id="@+id/btn_dec_byte"  />
+        <TextView android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/btn_dec_byte"
+            android:id="@+id/decryptByte" />        
+    </RelativeLayout>
+    <Button android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:id="@+id/btn_enc_txt"
+        android:text="@string/encryptTXT"/>
+    <Button android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:id="@+id/btn_dec_txt"
+        android:text="@string/decryptTXT"/>
+    <Button android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:id="@+id/btn_enc_jpg"
+        android:text="@string/encryptJPG"/>
+    <Button android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:id="@+id/btn_dec_jpg"
+        android:text="@string/decryptJPG"/>
+    <Button android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:id="@+id/btn_enc_rar"
+        android:text="@string/encryptRAR"/>
+    <Button android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:id="@+id/btn_dec_rar"
+        android:text="@string/decryptRAR"/>
+    
+    
+
+</LinearLayout>
+

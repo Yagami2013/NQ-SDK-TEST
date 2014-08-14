@@ -64,6 +64,7 @@ public class DeviceInfo extends Activity {
 			public void onClick(View button) {
 				if (mDeviceInfoService != null) {
 					String text;
+					
 					if (mDeviceInfoService.getErrorCode() == null) {
 						text = mDeviceInfoService.getUdInfo(); // 获取device info
 					} else {

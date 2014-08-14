@@ -8,7 +8,7 @@
         android:id="@+id/devInfo"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
-        android:text="@string/str_devInfo_ch" />
+        android:text="@string/str_get_ch" />
 
     <TextView 
         android:layout_height="wrap_content"

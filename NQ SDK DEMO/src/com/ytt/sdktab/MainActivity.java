@@ -21,10 +21,10 @@ public class MainActivity extends TabActivity {
 		String str_devInfo_ch=getString(R.string.str_devInfo_ch);
 
 		tabHost.addTab(tabHost.newTabSpec("tab1").setIndicator(str_encryption_ch+str_decryption_ch)
-				.setContent(new Intent(this, FileEncryption.class)));
-		tabHost.addTab(tabHost.newTabSpec("tab2").setIndicator(str_app_ch+str_config_ch)
-				.setContent(new Intent(this, StringEncryption.class)));
-		tabHost.addTab(tabHost.newTabSpec("tab3").setIndicator(str_sso_ch)
+				.setContent(new Intent(this, Encryption.class)));
+		tabHost.addTab(tabHost.newTabSpec("tab2").setIndicator(str_sso_ch)
+				.setContent(new Intent(this, SSO.class)));
+		tabHost.addTab(tabHost.newTabSpec("tab3").setIndicator(str_app_ch+str_config_ch)
 				.setContent(new Intent(this, AppConfig.class)));
 		tabHost.addTab(tabHost.newTabSpec("tab4").setIndicator(str_devInfo_ch)
 				.setContent(new Intent(this,DeviceInfo.class)));

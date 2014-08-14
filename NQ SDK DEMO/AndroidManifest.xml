@@ -28,16 +28,16 @@
             </intent-filter>
         </activity>
         <activity android:name="com.ytt.sdktab.AppConfig" />
-        <activity android:name="com.ytt.sdktab.FileEncryption" />
-        <activity android:name="com.ytt.sdktab.StringEncryption" />
+        <activity android:name="com.ytt.sdktab.Encryption" />
+        <activity android:name="com.ytt.sdktab.SSO" />
         <activity android:name="com.ytt.sdktab.DeviceInfo" />
 
-        <receiver android:name="com.ytt.sdktab.configUpdateReceiver" >
+        <receiver android:name="com.ytt.receiver.AppconfigUpdateReceiver" >
             <intent-filter android:priority="1000" >
                 <action android:name="com.nq.enterprise.sdk.appconfigupdate.com.ytt.sdktab" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.ytt.sdktab.configUpdateReceiver" >
+        <receiver android:name="com.ytt.receiver.SsoconfigUpdateReceiver" >
             <intent-filter android:priority="1000" >
                 <action android:name="com.nq.enterprise.sdk.ssoconfigupdate.com.ytt.sdktab" />
             </intent-filter>

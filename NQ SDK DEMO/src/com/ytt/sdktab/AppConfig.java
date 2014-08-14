@@ -3,6 +3,7 @@ package com.ytt.sdktab;
 import android.app.Activity;
 import android.app.Service;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,8 +17,8 @@ public class AppConfig extends Activity {
 
 	private Button getAppConfigButton;
 	private TextView configView;
-	private TextView ssoContent;
 	private NqAppConfigService mNqService = null;
+	private String tag="AppConfig";
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,33 +28,27 @@ public class AppConfig extends Activity {
 
 		getAppConfigButton = (Button) findViewById(R.id.getAppConfig);
 		configView = (TextView) findViewById(R.id.cfgcontent);
-		// (Button)findViewById(R.id.getSSOConfig);
-		ssoContent = (TextView) findViewById(R.id.ssocontent);
+		//getAppConfigButton.setEnabled(false);
+
 
 		getAppConfigButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 
-				String appConfig = mNqService.getAppConfig();
-				// SsoConfig mSsoConfig=mNqService.getSsoConfig();
-				String errorCode = mNqService.getErrorCode();
-				String errorInfo = mNqService.getAppConfig();
+				if (mNqService != null) {
+					String text;
+					if (mNqService.getErrorCode() == null) {
+						text = mNqService.getAppConfig(); // 获取device info
+					} else {
+						String errorCode = mNqService.getErrorCode();
+						text=ErrorInfo.getErrorInfo(AppConfig.this, errorCode);
 
-				if (appConfig != null) {
-					configView.setText(appConfig);
+					}// 返回错误码
+					configView.setText(text);
 				} else {
-					configView.setText(errorInfo);
+					ErrorInfo.hint(AppConfig.this,"service is null!");
 				}
-				/*
-				 * if (mSsoConfig!=null) {
-				 * ssoContent.setText(mSsoConfig.getSsoUrl()); }else { if
-				 * (mNqService.getErrorCode()=="1010") { ssoContent.setText("");
-				 * }else { ssoContent.setText(mNqService.getErrorCode()); }
-				 * 
-				 * }
-				 */
-
 			}
 		});
 	}
@@ -65,13 +60,23 @@ public class AppConfig extends Activity {
 	}
 
 	private NqAppConfigServiceListener nqListener = new NqAppConfigServiceListener() {
+		
+
 		@Override
 		public void onNQAppConfigServiceAvailable(NqAppConfigService mService) {
+			mNqService = mService;
 
-			if (mService != null) {
-
-				mNqService = mService;
-			}
+			/*if (mService != null) {	
+				Log.d(tag, mService.getErrorCode());
+				if ("1006".equals(mService.getErrorCode())) {
+					Log.d(tag, "error code is 1006");
+					ErrorInfo.hint(AppConfig.this,"app config not enabled!");
+				}else {
+					Log.d(tag, "string compare ok");
+					getAppConfigButton.setEnabled(true);
+					mNqService = mService;
+				}
+			}*/
 		}
 	};
 
