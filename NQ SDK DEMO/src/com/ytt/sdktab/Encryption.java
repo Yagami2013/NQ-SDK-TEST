@@ -22,6 +22,19 @@ public class Encryption extends Activity {
 	private SecurityServer mSecurityServer = null;
 	private boolean enabled=false;
 	
+	private Button enc_string;
+	private Button enc_byte;
+	private Button enc_txt;
+	private Button enc_jpg;
+	private Button enc_rar;
+	private Button dec_string;
+	private Button dec_byte;
+	private Button dec_txt;
+	private Button dec_jpg;
+	private Button dec_rar;
+	
+	
+	
 	private EditText input;
 	private String str_input;
 	private byte[] bytes_input;
@@ -53,8 +66,19 @@ public class Encryption extends Activity {
 			if (service != null) {
 				if (service.getErrorCode() == null) {
 					enabled=true;
+					enc_string.setEnabled(enabled);
+					enc_byte.setEnabled(enabled);
+					enc_txt.setEnabled(enabled);
+					enc_jpg.setEnabled(enabled);
+					enc_rar.setEnabled(enabled);
+					dec_string.setEnabled(enabled);
+					dec_byte.setEnabled(enabled);
+					dec_txt.setEnabled(enabled);
+					dec_jpg.setEnabled(enabled);
+					dec_rar.setEnabled(enabled);
 					mSecurityServer = service.getSecurityServer();
 				} else {
+					
 					String errorCode = service.getErrorCode(); // 返回错误码
 					String errorInfo = ErrorInfo.getErrorInfo(Encryption.this, errorCode);					
 					ErrorInfo.hint(Encryption.this, errorInfo );
@@ -71,16 +95,19 @@ public class Encryption extends Activity {
 		
 		initNqService();
 		
-		Button enc_string=(Button)findViewById(R.id.btn_enc_string);
-		Button enc_byte=(Button)findViewById(R.id.btn_enc_byte);
-		Button enc_txt=(Button)findViewById(R.id.btn_enc_txt);
-		Button enc_jpg=(Button)findViewById(R.id.btn_enc_jpg);
-		Button enc_rar=(Button)findViewById(R.id.btn_enc_rar);
-		Button dec_string=(Button)findViewById(R.id.btn_dec_string);
-		Button dec_byte=(Button)findViewById(R.id.btn_dec_byte);
-		Button dec_txt=(Button)findViewById(R.id.btn_dec_txt);
-		Button dec_jpg=(Button)findViewById(R.id.btn_dec_jpg);
-		Button dec_rar=(Button)findViewById(R.id.btn_dec_rar);
+		 enc_string=(Button)findViewById(R.id.btn_enc_string);
+		 enc_byte=(Button)findViewById(R.id.btn_enc_byte);
+		 enc_txt=(Button)findViewById(R.id.btn_enc_txt);
+		 enc_jpg=(Button)findViewById(R.id.btn_enc_jpg);
+		 enc_rar=(Button)findViewById(R.id.btn_enc_rar);
+		 dec_string=(Button)findViewById(R.id.btn_dec_string);
+		 dec_byte=(Button)findViewById(R.id.btn_dec_byte);
+		 dec_txt=(Button)findViewById(R.id.btn_dec_txt);
+		 dec_jpg=(Button)findViewById(R.id.btn_dec_jpg);
+		 dec_rar=(Button)findViewById(R.id.btn_dec_rar);
+		
+		
+		
 		enc_string.setEnabled(enabled);
 		enc_byte.setEnabled(enabled);
 		enc_txt.setEnabled(enabled);
@@ -91,10 +118,13 @@ public class Encryption extends Activity {
 		dec_txt.setEnabled(enabled);
 		dec_jpg.setEnabled(enabled);
 		dec_rar.setEnabled(enabled);
-		input=(EditText)findViewById(R.id.inputText);
-		str_input=input.getText().toString();
+
+		str_input=((EditText)findViewById(R.id.inputText)).getText().toString();
 		bytes_input=str_input.getBytes();
-		string_encrypted=(TextView)findViewById(R.id.encryptString);
+		
+		Log.d(tagString, "input string:"+str_input+"input bytes:"+bytes_input.toString());
+		
+		string_encrypted=(TextView)findViewById(R.id.encryptString);		
 		string_decrypted=(TextView)findViewById(R.id.decryptString);
 		byte_encrypted=(TextView)findViewById(R.id.encryptByte);
 		byte_decrypted=(TextView)findViewById(R.id.decryptByte);
@@ -197,6 +227,11 @@ public class Encryption extends Activity {
 			}
 		}
 		return paths;
+	}
+	public void onResume() {
+		super.onResume();
+		
+
 	}
 
 }
