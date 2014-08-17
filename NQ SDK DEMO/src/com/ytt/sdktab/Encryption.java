@@ -33,11 +33,6 @@ public class Encryption extends Activity {
 	private Button dec_jpg;
 	private Button dec_rar;
 	
-	
-	
-	private EditText input;
-	private String str_input;
-	private byte[] bytes_input;
 	private String text=null;//encrypted string
 	private byte[] bytes=null;//encrypted bytes
 	private TextView string_encrypted;
@@ -77,8 +72,7 @@ public class Encryption extends Activity {
 					dec_jpg.setEnabled(enabled);
 					dec_rar.setEnabled(enabled);
 					mSecurityServer = service.getSecurityServer();
-				} else {
-					
+				} else {					
 					String errorCode = service.getErrorCode(); // 返回错误码
 					String errorInfo = ErrorInfo.getErrorInfo(Encryption.this, errorCode);					
 					ErrorInfo.hint(Encryption.this, errorInfo );
@@ -118,11 +112,6 @@ public class Encryption extends Activity {
 		dec_txt.setEnabled(enabled);
 		dec_jpg.setEnabled(enabled);
 		dec_rar.setEnabled(enabled);
-
-		str_input=((EditText)findViewById(R.id.inputText)).getText().toString();
-		bytes_input=str_input.getBytes();
-		
-		Log.d(tagString, "input string:"+str_input+"input bytes:"+bytes_input.toString());
 		
 		string_encrypted=(TextView)findViewById(R.id.encryptString);		
 		string_decrypted=(TextView)findViewById(R.id.decryptString);
@@ -132,7 +121,9 @@ public class Encryption extends Activity {
 		OnClickListener listener=new View.OnClickListener() {
 			
 			@Override
-			public void onClick(View view) {			
+			public void onClick(View view) {	
+				String str_input=((EditText)findViewById(R.id.inputText)).getText().toString();
+				byte[] bytes_input=str_input.getBytes();
 							
 				String[] paths=prepareFile();
 				String path_src=paths[0];
@@ -143,6 +134,7 @@ public class Encryption extends Activity {
 				
 				switch (button.getId()) {
 				case R.id.btn_enc_string:
+					Log.d(tagString, "input string:"+str_input+"input bytes:"+bytes_input.toString());
 					text = mSecurityServer.encryptString(str_input);
 					string_encrypted.setText(text);
 					break;
