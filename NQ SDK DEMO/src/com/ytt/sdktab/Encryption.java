@@ -2,6 +2,7 @@ package com.ytt.sdktab;
 
 import java.io.File;
 
+import android.R.bool;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Environment;
@@ -139,26 +140,63 @@ public class Encryption extends Activity {
 					string_encrypted.setText(text);
 					break;
 				case R.id.btn_enc_byte:
+					Log.d(tagString, "test if the byte encryption input can be null");
 					bytes=mSecurityServer.encryptBytes(bytes_input);
-					byte_encrypted.setText(bytes.toString());
+					if (bytes==null) {
+						Log.d(tagString, "input bytes is null");
+					} else {
+						byte_encrypted.setText(new String(bytes));
+					}
+					
+					//byte_encrypted.setText(String.valueOf(bytes));
 					break;
 				case R.id.btn_enc_txt:
-					mSecurityServer.encryptFile(path_src+"test.txt", path_enc+"test.txt");
+					int flag = mSecurityServer.encryptFile(path_src+"test.txt", path_enc+"test.txt");
+					if (flag<0) {
+						ErrorInfo.hint(Encryption.this, ErrorInfo.getEncError(Encryption.this, flag));
+					}else {
+						ErrorInfo.hint(Encryption.this, "Encryption success!");
+					}
 					break;
 				case R.id.btn_enc_jpg:
-					mSecurityServer.encryptFile(path_src+"test.jpg", path_enc+"test.jpg");
+					int flag1 = mSecurityServer.encryptFile(path_src+"test.jpg", path_enc+"test.jpg");
+					if (flag1<0) {
+						ErrorInfo.hint(Encryption.this, ErrorInfo.getEncError(Encryption.this, flag1));
+					}else {
+						ErrorInfo.hint(Encryption.this, "Encryption success!");
+					}
 					break;
 				case R.id.btn_enc_rar:
-					mSecurityServer.encryptFile(path_src+"test.rar", path_enc+"test.rar");
+					int flag2 = mSecurityServer.encryptFile(path_src+"test.rar", path_enc+"test.rar");
+					if (flag2<0) {
+						ErrorInfo.hint(Encryption.this, ErrorInfo.getEncError(Encryption.this, flag2));
+					}else {
+						ErrorInfo.hint(Encryption.this, "Encryption success!");
+					}
 					break;
 				case R.id.btn_dec_txt:
-					mSecurityServer.decryptFile(path_enc+"test.txt", path_dec+"test.txt");
+					int flag3 = mSecurityServer.decryptFile(path_enc+"test.txt", path_dec+"test.txt");
+					if (flag3<0) {
+						ErrorInfo.hint(Encryption.this, ErrorInfo.getEncError(Encryption.this, flag3));
+					}else {
+						ErrorInfo.hint(Encryption.this, "Decryption success!");
+					}
 					break;
 				case R.id.btn_dec_jpg:
-					mSecurityServer.decryptFile(path_enc+"test.jpg", path_dec+"test.jpg");
+					int flag4 = mSecurityServer.decryptFile(path_enc+"test.jpg", path_dec+"test.jpg");
+					if (flag4<0) {
+						ErrorInfo.hint(Encryption.this, ErrorInfo.getEncError(Encryption.this, flag4));
+					}else {
+						ErrorInfo.hint(Encryption.this, "Decryption success!");
+					}
 					break;
 				case R.id.btn_dec_rar:
-					mSecurityServer.decryptFile(path_enc+"test.rar", path_dec+"test.rar");
+					int flag5=mSecurityServer.decryptFile(path_enc+"test.rar", path_dec+"test.rar");
+					if (flag5<0) {
+						ErrorInfo.hint(Encryption.this, ErrorInfo.getEncError(Encryption.this, flag5));
+					}else {
+						ErrorInfo.hint(Encryption.this, "Decryption success!");
+					}
 					break;
 				case R.id.btn_dec_string:
 					if (text!=null) {
@@ -171,7 +209,8 @@ public class Encryption extends Activity {
 				case R.id.btn_dec_byte:
 					if (bytes!=null) {
 						byte[] dec_byte=mSecurityServer.decryptBytes(bytes);
-						byte_decrypted.setText(dec_byte.toString());
+						byte_decrypted.setText(new String(dec_byte));
+						//byte_decrypted.setText(String.valueOf(dec_byte));
 					} else {
 						ErrorInfo.hint(Encryption.this, "encrypted bytes is null,please click encryption first!");
 					}

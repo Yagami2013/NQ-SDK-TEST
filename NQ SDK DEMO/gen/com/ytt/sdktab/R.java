@@ -85,6 +85,7 @@ public final class R {
         public static final int encryptRAR=0x7f050005;
         public static final int encryptString=0x7f05000b;
         public static final int encryptTXT=0x7f050003;
+        public static final int error_1=0x7f050023;
         /**  error info for each error code 
          */
         public static final int error_1004=0x7f050018;
@@ -98,6 +99,10 @@ public final class R {
         public static final int error_1012=0x7f050020;
         public static final int error_1013=0x7f050021;
         public static final int error_1014=0x7f050022;
+        public static final int error_2=0x7f050024;
+        public static final int error_3=0x7f050025;
+        public static final int error_4=0x7f050026;
+        public static final int error_5=0x7f050027;
         public static final int hello_world=0x7f050002;
         public static final int hintText=0x7f05000d;
         public static final int str_app_ch=0x7f050014;

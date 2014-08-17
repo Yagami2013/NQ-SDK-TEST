@@ -1,5 +1,6 @@
 package com.ytt.sdktab;
 
+import android.R.integer;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -50,5 +51,21 @@ public class ErrorInfo extends Activity{
 				});
 		AlertDialog alert = builder.create();
 		alert.show();
+	}
+	public static String getEncError(Context context,int errorCode) {
+		switch (errorCode) {
+		case -1:
+			return context.getString(R.string.error_1);
+		case -2:
+			return context.getString(R.string.error_2);
+		case -3:
+			return context.getString(R.string.error_3);
+		case -4:
+			return context.getString(R.string.error_4);
+		case -5:
+			return context.getString(R.string.error_5);
+		default:
+			return "unknown error";
+		}		
 	}
 }

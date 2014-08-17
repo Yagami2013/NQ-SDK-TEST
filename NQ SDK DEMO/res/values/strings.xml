@@ -37,5 +37,11 @@
     <string name="error_1012">1012:未安装安全容器</string>
     <string name="error_1013">1013:未初始化安全容器</string>
     <string name="error_1014">1014:MDM未激活</string>
+    
+    <string name="error_1">-1:加/解密参数有误</string>
+    <string name="error_2">-2:未初始化加/解密功能</string>
+    <string name="error_3">-3:文件不存在或无访问权限</string>
+    <string name="error_4">-4:无权限</string>
+    <string name="error_5">-5:磁盘已满</string>
 
 </resources>
